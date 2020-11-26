@@ -68,5 +68,4 @@ RUN TERM=xterm script \
   >/dev/null & \
   sleep 10
 
-CMD ["/app/browsh"]
-
+CMD [ "balena-idle" ]
