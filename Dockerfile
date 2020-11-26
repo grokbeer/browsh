@@ -13,7 +13,8 @@ RUN install_packages \
       libssl-dev \
       pkg-config \
       libprotobuf-dev \
-      make
+      make \
+      go-bindata
 
 ENV GOPATH=/go-home
 ENV BASE=$GOPATH/src/browsh/interfacer
