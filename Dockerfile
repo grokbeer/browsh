@@ -1,4 +1,4 @@
-FROM bitnami/minideb:stretch as build
+FROM balenalib/raspberry-pi-debian-golang:stretch as build
 
 RUN install_packages \
       curl \
@@ -15,14 +15,6 @@ RUN install_packages \
       libprotobuf-dev \
       make
 
-# Install Golang
-ENV GOROOT=/go
-ENV GOPATH=/go-home
-ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-RUN curl -L -o go.tar.gz https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
-RUN mkdir -p $GOPATH/bin
-RUN tar -C / -xzf go.tar.gz
-
 ENV BASE=$GOPATH/src/browsh/interfacer
 WORKDIR $BASE
 ADD interfacer $BASE
@@ -34,7 +26,7 @@ RUN $BASE/contrib/build_browsh.sh
 ###########################
 # Actual final Docker image
 ###########################
-FROM bitnami/minideb:stretch
+FROM balenalib/raspberry-pi-debian:stretch
 
 ENV HOME=/app
 WORKDIR /app
