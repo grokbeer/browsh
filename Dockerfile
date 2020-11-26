@@ -15,6 +15,7 @@ RUN install_packages \
       libprotobuf-dev \
       make
 
+ENV GOPATH=/go-home
 ENV BASE=$GOPATH/src/browsh/interfacer
 WORKDIR $BASE
 ADD interfacer $BASE
