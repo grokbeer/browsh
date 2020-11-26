@@ -42,7 +42,8 @@ RUN install_packages \
       ca-certificates \
       bzip2 \
       libdbus-glib-1-2 \
-      procps
+      procps \
+      firefox-esr
 
 # Block ads, etc. This includes porn just because this image is also used on the
 # public SSH demo: `ssh brow.sh`.
@@ -52,13 +53,6 @@ RUN curl -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/maste
 RUN useradd -m user --home /app
 RUN chown user:user /app
 USER user
-
-# Setup Firefox
-ENV PATH="${HOME}/bin/firefox:${PATH}"
-ADD .travis.yml .
-ADD interfacer/contrib/setup_firefox.sh .
-RUN ./setup_firefox.sh
-RUN rm setup_firefox.sh && rm .travis.yml
 
 # Firefox behaves quite differently to normal on its first run, so by getting
 # that over and done with here when there's no user to be dissapointed means
