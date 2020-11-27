@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-debian-golang:buster as build
+FROM balenalib/raspberry-pi-debian-golang:stretch-build as build
 
 RUN install_packages \
       curl \
@@ -28,7 +28,7 @@ RUN $BASE/contrib/build_browsh.sh
 ###########################
 # Actual final Docker image
 ###########################
-FROM balenalib/rpi-raspbian:buster
+FROM balenalib/raspberry-pi-debian:stretch
 
 ENV HOME=/app
 WORKDIR /app
@@ -47,7 +47,7 @@ RUN install_packages \
 
 # Block ads, etc. This includes porn just because this image is also used on the
 # public SSH demo: `ssh brow.sh`.
-#RUN curl -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
+RUN curl -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts
 
 # Don't use root
 RUN useradd -m user --home /app
@@ -64,4 +64,4 @@ RUN TERM=xterm script \
   >/dev/null & \
   sleep 10
 
-CMD sleep 10000
+CMD ["balena-idle"]
