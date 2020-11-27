@@ -64,4 +64,4 @@ RUN TERM=xterm script \
   >/dev/null & \
   sleep 10
 
-CMD [ "sleep 10000" ]
+CMD sleep 10000
