@@ -1,4 +1,4 @@
-FROM balenalib/raspberry-pi-debian-golang:stretch as build
+FROM balenalib/raspberry-pi-debian-golang:buster as build
 
 RUN install_packages \
       curl \
@@ -28,7 +28,7 @@ RUN $BASE/contrib/build_browsh.sh
 ###########################
 # Actual final Docker image
 ###########################
-FROM balenalib/raspberry-pi-debian:stretch
+FROM balenalib/raspberry-pi-debian:buster
 
 ENV HOME=/app
 WORKDIR /app
