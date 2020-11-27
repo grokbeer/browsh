@@ -28,7 +28,7 @@ RUN $BASE/contrib/build_browsh.sh
 ###########################
 # Actual final Docker image
 ###########################
-FROM balenalib/raspberry-pi-debian:buster
+FROM balenalib/rpi-raspbian:buster
 
 ENV HOME=/app
 WORKDIR /app
